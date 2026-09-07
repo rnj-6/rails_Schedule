@@ -1,4 +1,12 @@
 <%= form_with model: @post do |form| %>
+    <% if @post.errors.any? %>
+        <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    <% end %>
+
     <div>
         <%= form.label :title, "タイトル" %>
         <%= form.text_field :title %>    
@@ -22,7 +30,7 @@
 
     <%# キャンセルボタン %>
     <%= link_to "キャンセル", posts_path %>
-    
+
     <%# 保存ボタン %>
     <%= form.submit "保存" %>
     
